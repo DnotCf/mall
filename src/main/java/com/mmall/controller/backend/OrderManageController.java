@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 
 
 @Controller
-@RequestMapping("/manage/order")
+@RequestMapping("/manage/order/")
 public class OrderManageController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class OrderManageController {
     public ServerResponse<PageInfo> orderList(HttpServletRequest request, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
                                               @RequestParam(value = "pageSize",defaultValue = "10")int pageSize){
 
-        String token = CookieUtil.getCookie(request);
+        /*String token = CookieUtil.getCookie(request);
         if (StringUtils.isBlank(token)) {
             return ServerResponse.createByErrorMessage("用户未登录,无法获取当前用户的信息");
         }
@@ -52,14 +52,15 @@ public class OrderManageController {
             return iOrderService.manageList(pageNum,pageSize);
         }else{
             return ServerResponse.createByErrorMessage("无权限操作");
-        }
+        }*/
+        return iOrderService.manageList(pageNum,pageSize);
     }
 
     @RequestMapping("detail.do")
     @ResponseBody
     public ServerResponse<OrderVo> orderDetail(HttpServletRequest request, Long orderNo){
 
-        String token = CookieUtil.getCookie(request);
+        /*String token = CookieUtil.getCookie(request);
         if (StringUtils.isBlank(token)) {
             return ServerResponse.createByErrorMessage("用户未登录,无法获取当前用户的信息");
         }
@@ -74,7 +75,9 @@ public class OrderManageController {
             return iOrderService.manageDetail(orderNo);
         }else{
             return ServerResponse.createByErrorMessage("无权限操作");
-        }
+        }*/
+
+        return iOrderService.manageDetail(orderNo);
     }
 
 
@@ -83,7 +86,7 @@ public class OrderManageController {
     @ResponseBody
     public ServerResponse<PageInfo> orderSearch(HttpServletRequest request, Long orderNo,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
                                                @RequestParam(value = "pageSize",defaultValue = "10")int pageSize){
-        String token = CookieUtil.getCookie(request);
+       /* String token = CookieUtil.getCookie(request);
         if (StringUtils.isBlank(token)) {
             return ServerResponse.createByErrorMessage("用户未登录,无法获取当前用户的信息");
         }
@@ -97,7 +100,8 @@ public class OrderManageController {
             return iOrderService.manageSearch(orderNo,pageNum,pageSize);
         }else{
             return ServerResponse.createByErrorMessage("无权限操作");
-        }
+        }*/
+        return iOrderService.manageSearch(orderNo,pageNum,pageSize);
     }
 
 
@@ -106,7 +110,7 @@ public class OrderManageController {
     @ResponseBody
     public ServerResponse<String> orderSendGoods(HttpServletRequest request, Long orderNo){
 
-        String token = CookieUtil.getCookie(request);
+        /*String token = CookieUtil.getCookie(request);
         if (StringUtils.isBlank(token)) {
             return ServerResponse.createByErrorMessage("用户未登录,无法获取当前用户的信息");
         }
@@ -120,7 +124,8 @@ public class OrderManageController {
             return iOrderService.manageSendGoods(orderNo);
         }else{
             return ServerResponse.createByErrorMessage("无权限操作");
-        }
+        }*/
+        return iOrderService.manageSendGoods(orderNo);
     }
 
 

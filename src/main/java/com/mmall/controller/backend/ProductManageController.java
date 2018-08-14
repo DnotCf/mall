@@ -29,7 +29,7 @@ import java.util.Map;
 
 
 @Controller
-@RequestMapping("/manage/product")
+@RequestMapping("/manage/product/")
 public class ProductManageController {
 
     @Autowired
@@ -153,7 +153,7 @@ public class ProductManageController {
         if(iUserService.checkAdminRole(user).isSuccess()){
             String path = request.getSession().getServletContext().getRealPath("upload");
             String targetFileName = iFileService.upload(file,path);
-            String url = PropertiesUtil.getProperty("ftp.server.http.prefix")+targetFileName;
+            String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + PropertiesUtil.getProperty("ftp.accesspath") + targetFileName;
 
             Map fileMap = Maps.newHashMap();
             fileMap.put("uri",targetFileName);
@@ -195,7 +195,7 @@ public class ProductManageController {
                 resultMap.put("msg","上传失败");
                 return resultMap;
             }
-            String url = PropertiesUtil.getProperty("ftp.server.http.prefix")+targetFileName;
+            String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + PropertiesUtil.getProperty("ftp.accesspath") + targetFileName;
             resultMap.put("success",true);
             resultMap.put("msg","上传成功");
             resultMap.put("file_path",url);
